@@ -1,7 +1,6 @@
 'use client';
 
 import { SunIcon, MoonIcon, CalendarIcon } from '@heroicons/react/24/outline';
-import pikselLogo from '/Piksel-logo-black-2023.png';
 
 interface HeaderProps {
   onOpenWeekNumbers: () => void;

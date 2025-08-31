@@ -25,14 +25,20 @@ export default function Home() {
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
-      setIsDarkMode(JSON.parse(savedDarkMode));
+      const darkMode = JSON.parse(savedDarkMode);
+      setIsDarkMode(darkMode);
+      // Apply dark mode class to document immediately
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }, []);
 
-  // Save dark mode preference to localStorage
+  // Save dark mode preference to localStorage and apply to document
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-    // Apply dark mode class to document
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
