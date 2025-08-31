@@ -25,27 +25,10 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
-  const [totalSum, setTotalSum] = useState(0);
   const [sortField, setSortField] = useState<string>('updated');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
-  // Async function to calculate sum in background (non-blocking)
-  const calculateSumAsync = async (filterString: string) => {
-    try {
-      const allOrdersForSum = await PocketBaseService.getOrders({
-        page: 1,
-        perPage: 200, // Reasonable limit
-        sort: '-updated',
-        filter: filterString
-      });
-      
-      const approvedOrders = allOrdersForSum.items.filter(order => order.approved);
-      const sum = approvedOrders.reduce((total, order) => total + (order.final_price || 0), 0);
-      setTotalSum(sum);
-    } catch {
-      setTotalSum(0);
-    }
-  };
+
 
   // Function to check if media alert should be shown
   const shouldShowMediaAlert = (order: Order): boolean => {
@@ -213,9 +196,6 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
         setOrders(result.items);
         setTotalPages(result.totalPages);
         setTotalItems(result.totalItems);
-        
-        // Calculate sum asynchronously in background (non-blocking)
-        calculateSumAsync(filterString);
               } catch (error) {
           console.error('Failed to fetch orders:', error);
           setOrders([]);
@@ -270,11 +250,6 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               Užsakymai ({totalItems})
-              {totalSum > 0 && (
-                <span className="ml-2 text-sm font-normal text-green-600 dark:text-green-400">
-                  - Suma: €{totalSum.toLocaleString('lt-LT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </span>
-              )}
             </h2>
             {sortField && (
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">

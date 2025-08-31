@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: 'Piksel Orders - Užsakymų valdymas',
   description: 'Modernus užsakymų valdymo sistema su PocketBase integracija',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
 }

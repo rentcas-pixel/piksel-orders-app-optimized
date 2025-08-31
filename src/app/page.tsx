@@ -70,8 +70,8 @@ export default function Home() {
   });
 
   // Debounce filters to prevent excessive API calls
-  const debouncedFilters = useDebounce(filters, 500);
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const debouncedFilters = useDebounce(filters, 1000);
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   // Memoize filter changes to prevent unnecessary re-renders
   const handleFiltersChange = useCallback((newFilters: typeof filters) => {
