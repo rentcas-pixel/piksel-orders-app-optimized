@@ -1,14 +1,15 @@
 'use client';
 
-import { SunIcon, MoonIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import { SunIcon, MoonIcon, CalendarIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 
 interface HeaderProps {
   onOpenWeekNumbers: () => void;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
+  onExportToExcel: () => void;
 }
 
-export function Header({ onOpenWeekNumbers, isDarkMode, onToggleDarkMode }: HeaderProps) {
+export function Header({ onOpenWeekNumbers, isDarkMode, onToggleDarkMode, onExportToExcel }: HeaderProps) {
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
@@ -27,6 +28,15 @@ export function Header({ onOpenWeekNumbers, isDarkMode, onToggleDarkMode }: Head
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
+            {/* Excel Export Button */}
+            <button
+              onClick={onExportToExcel}
+              className="p-2 rounded-lg bg-green-600 dark:bg-green-700 text-white hover:bg-green-700 dark:hover:bg-green-600 transition-colors"
+              title="Eksportuoti į Excel"
+            >
+              <DocumentArrowDownIcon className="w-5 h-5" />
+            </button>
+
             {/* Week Numbers Button */}
             <button
               onClick={onOpenWeekNumbers}
@@ -46,8 +56,6 @@ export function Header({ onOpenWeekNumbers, isDarkMode, onToggleDarkMode }: Head
                 <MoonIcon className="w-5 h-5" />
               )}
             </button>
-
-
           </div>
         </div>
       </div>
