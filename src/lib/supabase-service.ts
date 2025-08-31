@@ -147,7 +147,7 @@ export class SupabaseService {
     return data || [];
   }
 
-  static async uploadFile(file: File, orderId: string): Promise<string> {
+  static async uploadFile(file: File, orderId: string): Promise<FileAttachment> {
     try {
       const fileExt = file.name.split('.').pop();
       const fileName = `${orderId}-${Date.now()}.${fileExt}`;
@@ -168,21 +168,28 @@ export class SupabaseService {
       // Save metadata to database
       const metadata = {
         order_id: orderId,
-        file_name: file.name,
-        file_path: storagePath,
+        filename: file.name,
         file_url: urlData.publicUrl,
-        file_size: file.size,
         file_type: file.type,
-        uploaded_at: new Date().toISOString()
+        created_at: new Date().toISOString()
       };
       
-      const { error: metadataError } = await supabase
-        .from('order_files')
-        .insert(metadata);
+      const { data: fileData, error: metadataError } = await supabase
+        .from('file_attachments')
+        .insert([metadata])
+        .select()
+        .single();
       
       if (metadataError) throw metadataError;
       
-      return urlData.publicUrl;
+      return {
+        id: fileData.id,
+        order_id: orderId,
+        filename: file.name,
+        file_url: urlData.publicUrl,
+        file_type: file.type,
+        created_at: fileData.created_at
+      };
     } catch (error) {
       console.error('Error uploading file:', error);
       throw error;
