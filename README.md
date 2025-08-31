@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Piksel Orders App - Optimized
 
-## Getting Started
+Optimized Piksel Orders management application with performance improvements and code cleanup.
 
-First, run the development server:
+## 🚀 Features
 
+- **Order Management**: Create, edit, and manage orders
+- **Advanced Filtering**: Filter by status, month, year, client, agency
+- **Search Functionality**: Search across clients, agencies, and invoice IDs
+- **Week Numbers Modal**: View and navigate through weeks
+- **Dark Mode**: Toggle between light and dark themes
+- **Reminder Notifications**: Get notified about pending tasks
+- **Responsive Design**: Works on desktop and mobile devices
+
+## 🛠️ Technologies
+
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **PocketBase**: Backend database
+- **Supabase**: Additional backend services
+- **date-fns**: Date manipulation library
+- **Heroicons**: Icon library
+
+## 🚀 Performance Optimizations
+
+- **API Caching**: Implemented caching to reduce server load
+- **Debouncing**: Search and filter inputs are debounced
+- **Code Cleanup**: Removed unnecessary console logs and mock data
+- **Optimized Components**: Reduced re-renders and improved performance
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd piksel-orders-app-optimized
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Update the configuration in `src/config/index.ts`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+export const config = {
+  pocketbase: {
+    url: process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://your-pocketbase-url.com',
+    collection: 'orders'
+  },
+  supabase: {
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://your-supabase-url.com',
+    anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key'
+  }
+};
+```
 
-## Deploy on Vercel
+## 📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                 # Next.js App Router pages
+├── components/          # React components
+├── config/             # Configuration files
+├── hooks/              # Custom React hooks
+├── lib/                # Library files (PocketBase, Supabase)
+└── types/              # TypeScript type definitions
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎯 Key Features
+
+### Order Management
+- Create new orders with client, agency, and invoice details
+- Edit existing orders with real-time updates
+- View order details in a modal
+- Toggle invoice sent status
+
+### Advanced Filtering
+- Filter by approval status (approved/pending)
+- Filter by month and year
+- Filter by client and agency
+- Filter by media received status
+
+### Search
+- Search across client names, agencies, and invoice IDs
+- Real-time search with debouncing
+- Special handling for "viad" searches (includes viaduct orders)
+
+### Week Numbers
+- View weeks for any year
+- Navigate between years
+- Auto-scroll to current week
+- Lithuanian locale support
+
+## 🚀 Deployment
+
+The application can be deployed to Vercel, Netlify, or any other hosting platform that supports Next.js.
+
+## 📝 License
+
+This project is proprietary software for Piksel company.
+
+## 🤝 Contributing
+
+This is a private project for Piksel company use only.
