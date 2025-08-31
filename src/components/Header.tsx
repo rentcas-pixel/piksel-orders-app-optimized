@@ -1,7 +1,7 @@
 'use client';
 
-
 import { SunIcon, MoonIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import pikselLogo from '/Piksel-logo-black-2023.png';
 
 interface HeaderProps {
   onOpenWeekNumbers: () => void;
@@ -14,21 +14,15 @@ export function Header({ onOpenWeekNumbers, isDarkMode, onToggleDarkMode }: Head
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* Logo and Title */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                  Piksel Orders
-                </h1>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Užsakymų valdymas
-                </p>
-              </div>
+          <div className="flex items-center justify-center flex-1">
+            <div className="flex flex-col items-center">
+              <img 
+                src="Piksel-logo-black-2023.png" 
+                alt="Piksel" 
+                className="h-10 w-auto dark:invert"
+              />
             </div>
           </div>
 
