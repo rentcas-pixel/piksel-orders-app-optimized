@@ -57,9 +57,9 @@ export function SearchAndFilters({
   ];
 
   const mediaReceivedOptions = [
-    { value: '', label: 'Visi media' },
-    { value: 'true', label: 'Media gautas' },
-    { value: 'false', label: 'Media negautas' }
+    { value: '', label: 'Media' },
+    { value: 'true', label: 'Gauta' },
+    { value: 'false', label: 'Negauta' }
   ];
 
 

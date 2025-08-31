@@ -253,7 +253,7 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
             </h2>
             {sortField && (
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Rūšiuojama pagal: <span className="font-medium">{sortField}</span> 
+                Rūšiuojama pagal: <span className="font-medium">{sortField}</span>{' '}
                 ({sortDirection === 'asc' ? 'didėjimo' : 'mažėjimo'} tvarka)
               </p>
             )}
@@ -328,7 +328,7 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
                 onClick={() => handleSort('media_received')}
               >
                 <div className="flex items-center space-x-1">
-                  <span>Media gautas</span>
+                  <span>Media</span>
                   {getSortIcon('media_received')}
                 </div>
               </th>
@@ -422,7 +422,7 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
                       handleToggleInvoiceSent(order);
                     }}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                      order.invoice_sent ? 'bg-green-300' : 'bg-gray-200'
+                      order.invoice_sent ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-600'
                     }`}
                   >
                     <span

@@ -385,22 +385,22 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
       }}
       tabIndex={0}
     >
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">{order.client}</h2>
-            <p className="text-gray-600">{order.agency} | {order.invoice_id}</p>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{order.client}</h2>
+            <p className="text-gray-600 dark:text-gray-300">{order.agency} | {order.invoice_id}</p>
           </div>
           
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium text-gray-700">Media</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Media</span>
               <button
                 type="button"
                 onClick={() => handleInputChange('media_received', !formData.media_received)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  formData.media_received ? 'bg-green-300' : 'bg-gray-200'
+                  formData.media_received ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-600'
                 }`}
               >
                 <span
@@ -412,12 +412,12 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
             </div>
             
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium text-gray-700">Sąskaita</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Sąskaita</span>
               <button
                 type="button"
                 onClick={() => handleInputChange('invoice_sent', !formData.invoice_sent)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                  formData.invoice_sent ? 'bg-green-300' : 'bg-gray-200'
+                  formData.invoice_sent ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-600'
                 }`}
               >
                 <span
@@ -431,7 +431,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           <button
               type="button"
             onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors ml-4"
+              className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors ml-4"
           >
             <XMarkIcon className="w-6 h-6" />
           </button>
@@ -443,25 +443,25 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           {/* Main Fields */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Pavadinimas
                     </label>
                     <input
                       type="text"
                       value={formData.client || ''}
                       onChange={(e) => handleInputChange('client', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Statusas
                     </label>
                     <select
                       value={formData.approved ? 'taip' : 'ne'}
                       onChange={(e) => handleInputChange('approved', e.target.value === 'taip')}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     >
                 <option value="ne">Nepatvirtinta</option>
                       <option value="taip">Patvirtinta</option>
@@ -474,7 +474,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           {/* Dates Section */}
           <div className="space-y-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Transliacijų laikotarpis
                     </label>
               <div className="flex items-center space-x-2">
@@ -484,22 +484,22 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
                   onChange={(e) => handleInputChange('from', e.target.value)}
                   pattern="\d{4}-\d{2}-\d{2}"
                   placeholder="yyyy-mm-dd"
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                 />
-                <span className="text-gray-500">→</span>
+                <span className="text-gray-500 dark:text-gray-400">→</span>
                     <input
                       type="text"
                       value={formData.to ? formatDateForDisplay(formData.to) : ''}
                       onChange={(e) => handleInputChange('to', e.target.value)}
                       pattern="\d{4}-\d{2}-\d{2}"
                       placeholder="yyyy-mm-dd"
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     />
                   </div>
                   </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-900">
+                        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 <span className="font-normal">Savaitės:</span> <span className="font-semibold">{weeksDisplay}</span>
               </div>
             </div>
@@ -508,18 +508,18 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
 
           {/* Sums Section */}
                 {formData.from && formData.to && formData.final_price && (
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                     <div className="space-y-2">
                       {(() => {
                         const distribution = calculateMonthlyDistribution(formData.from, formData.to, formData.final_price);
                         return distribution.map((month) => (
-                          <div key={month.month} className="text-sm text-gray-900">
+                          <div key={month.month} className="text-sm text-gray-900 dark:text-gray-100">
                             {month.monthName.charAt(0).toUpperCase() + month.monthName.slice(1)} {month.year} ({month.days} d.) → {month.amount.toFixed(2)}€
                           </div>
                         ));
                       })()}
-                      <div className="pt-3 border-t border-gray-200">
-                        <div className="text-sm text-gray-900 flex items-center">
+                      <div className="pt-3 border-t border-gray-200 dark:border-gray-600">
+                        <div className="text-sm text-gray-900 dark:text-gray-100 flex items-center">
                           <span className="font-normal">Viso:</span> <span className="font-semibold">{formData.final_price?.toFixed(2)}€</span>
                           {quote && (
                             <button
@@ -527,7 +527,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
                                 const url = order?.viaduct ? quote.viaduct_link : quote.link;
                                 window.open(url, '_blank');
                               }}
-                              className="ml-2 text-gray-400 hover:text-gray-600 transition-colors"
+                              className="ml-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                               title="Atidaryti skaičiuoklę"
                             >
                               🔗
@@ -548,7 +548,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           {/* Comments Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Komentaras
               </label>
               <div
@@ -562,18 +562,18 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
                 }}
                 onPaste={handlePaste}
                 data-placeholder="Įveskite komentarą... (Enter - išsaugoti, Cmd+V - printscreen)"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24 resize-none min-h-[6rem] overflow-y-auto"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24 resize-none min-h-[6rem] overflow-y-auto bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                 style={{ whiteSpace: 'pre-wrap' }}
               />
               
               {comments.length > 0 && (
                 <div className="mt-4 space-y-2">
                   {comments.map((comment) => (
-                    <div key={comment.id} className="bg-gray-50 p-3 rounded-lg">
-                      <div className="text-sm text-gray-600 mb-1">
+                    <div key={comment.id} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
                         {new Date(comment.created_at).toLocaleString('lt-LT')}
                       </div>
-                      <div className="text-sm text-gray-900">{comment.text}</div>
+                      <div className="text-sm text-gray-900 dark:text-gray-100">{comment.text}</div>
                     </div>
                   ))}
                 </div>
@@ -582,7 +582,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Printscreens
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -644,7 +644,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
                   ))}
                   
                   {pendingPrintscreens.length === 0 && printScreens.length === 0 && (
-                    <div className="text-sm text-gray-400 italic">
+                    <div className="text-sm text-gray-400 dark:text-gray-500 italic">
                       Cmd+V į komentaro lauką pridėti printscreen
                     </div>
                   )}
@@ -656,19 +656,19 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           {/* Reminders Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Data
               </label>
               <input
                 type="date"
                 value={reminderDate}
                 onChange={(e) => setReminderDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Priminimo žinutė
               </label>
               <div className="flex space-x-2">
@@ -677,7 +677,7 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
                   value={reminderMessage}
                   onChange={(e) => setReminderMessage(e.target.value)}
                   placeholder="Įveskite priminimo žinutę..."
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                 />
                 <button
                   type="button"
@@ -693,20 +693,20 @@ export function EditOrderModal({ order, isOpen, onClose, onOrderUpdated }: EditO
           {/* Reminders List */}
           {reminders.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Priminimai</h3>
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Priminimai</h3>
               <div className="space-y-2">
                 {reminders.map((reminder) => (
-                  <div key={reminder.id} className="bg-gray-50 p-3 rounded-lg flex items-center justify-between">
+                  <div key={reminder.id} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg flex items-center justify-between">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">
+                      <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                         {new Date(reminder.due_date).toLocaleDateString('lt-LT')}
                       </div>
-                      <div className="text-sm text-gray-600">{reminder.title}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{reminder.title}</div>
                     </div>
                     <button
                       type="button"
                       onClick={() => handleDeleteReminder(reminder.id)}
-                      className="text-red-600 hover:text-red-800 text-sm"
+                      className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm"
                     >
                       Ištrinti
                     </button>
