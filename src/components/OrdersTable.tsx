@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Order } from '@/types';
 import { PocketBaseService } from '@/lib/pocketbase';
 import { format } from 'date-fns';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 
 interface OrdersTableProps {
@@ -17,9 +18,10 @@ interface OrdersTableProps {
     media_received: string;
   };
   onEditOrder: (order: Order) => void;
+  onGenerateInvoice: (order: Order) => void;
 }
 
-export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTableProps) {
+export function OrdersTable({ searchQuery, filters, onEditOrder, onGenerateInvoice }: OrdersTableProps) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,8 +44,8 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
       const timeDiff = fromDate.getTime() - today.getTime();
       const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
       
-      // Show alert if: 2 days or less remaining, OR deadline has passed, OR today
-      return daysDiff <= 2;
+      // Show alert if: 3 days or less remaining, OR deadline has passed, OR today
+      return daysDiff <= 3;
     } catch {
       return false;
     }
@@ -416,21 +418,38 @@ export function OrdersTable({ searchQuery, filters, onEditOrder }: OrdersTablePr
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleToggleInvoiceSent(order);
-                    }}
-                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                      order.invoice_sent ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-600'
-                    }`}
-                  >
-                    <span
-                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                        order.invoice_sent ? 'translate-x-6' : 'translate-x-1'
+                  <div className="flex items-center space-x-2">
+                    {/* Generate Invoice Button */}
+                    {order.approved && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onGenerateInvoice(order);
+                        }}
+                        className="p-1 rounded-lg bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                        title="Generuoti sąskaitą"
+                      >
+                        <DocumentTextIcon className="w-4 h-4" />
+                      </button>
+                    )}
+                    
+                    {/* Invoice Toggle */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggleInvoiceSent(order);
+                      }}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        order.invoice_sent ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-600'
                       }`}
-                    />
-                  </button>
+                    >
+                      <span
+                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          order.invoice_sent ? 'translate-x-6' : 'translate-x-1'
+                        }`}
+                      />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
