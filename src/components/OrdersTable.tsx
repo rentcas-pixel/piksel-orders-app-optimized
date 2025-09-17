@@ -18,7 +18,7 @@ interface OrdersTableProps {
     media_received: string;
   };
   onEditOrder: (order: Order) => void;
-  onGenerateInvoice: (order: Order) => void;
+  onGenerateInvoice?: (order: Order) => void;
 }
 
 export function OrdersTable({ searchQuery, filters, onEditOrder, onGenerateInvoice }: OrdersTableProps) {
@@ -420,11 +420,11 @@ export function OrdersTable({ searchQuery, filters, onEditOrder, onGenerateInvoi
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center space-x-2">
                     {/* Generate Invoice Button */}
-                    {order.approved && (
+                    {order.approved && onGenerateInvoice && (
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          onGenerateInvoice(order);
+                          onGenerateInvoice?.(order);
                         }}
                         className="p-1 rounded-lg bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                         title="Generuoti sąskaitą"
